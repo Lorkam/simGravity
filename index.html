@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulation Gravité 2D</title>
+  <style>
+    body { margin: 0; background: #1a1a1a; padding: 0; width: 100wh; height: 100vh; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<div id="menu">
+  <div id="menu-focus" style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10px; position: absolute; top: 10px; left: 10px;">
+    <button id="focus-Mercure" name="Mercure">Mercure</button>
+    <button id="focus-Venus" name="Venus">Vénus</button>
+    <button id="focus-Terre" name="Terre">Terre</button>
+    <button id="focus-Mars" name="Mars">Mars</button>
+    <button id="focus-Jupiter" name="Jupiter">Jupiter</button>
+    <button id="focus-Saturne" name="Saturne">Saturne</button>
+    <button id="focus-Uranus" name="Uranus">Uranus</button>
+    <button id="focus-Neptune" name="Neptune">Neptune</button>
+  </div>
+</div>
+<div id="script-container"></div>
+<script>
+    const date = new Date().getTime();
+    const logiqueJS = document.createElement('script');
+    logiqueJS.src = 'logique.js?v=' + date; // cache buster avec timestamp
+    document.getElementById('script-container').appendChild(logiqueJS);
+</script>
+</body>
+</html>
