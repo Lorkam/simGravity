@@ -136,6 +136,11 @@ let camLock = false; // Variable pour contrôler le verrouillage de la caméra
 let corpsLock = "Soleil"; // Corps sur lequel la caméra est centrée
 let paused = false; // Variable pour contrôler la pause
 async function animate() {
+    if(camLock) {
+        // Centrer la caméra sur le Mercure
+        offsetX = canvas.width / 2 - corps[numCorps[corpsLock]].x * zoom;
+        offsetY = canvas.height / 2 - corps[numCorps[corpsLock]].y * zoom;
+    }
     ctx.setTransform(1, 0, 0, 1, 0, 0); // Réinitialise la transformation
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.translate(canvas.width / 2, canvas.height / 2); // Centre
@@ -150,18 +155,12 @@ async function animate() {
             }
         }
     }
-    if(camLock) {
-        // Centrer la caméra sur le Mercure
-        offsetX = canvas.width / 2 - corps[numCorps[corpsLock]].x * zoom;
-        offsetY = canvas.height / 2 - corps[numCorps[corpsLock]].y * zoom;
-    }
-
-
 
     corps.forEach(body => {
         if(!paused) body.majPosition();
         body.dessiner(ctx);
     });
+
     requestAnimationFrame(animate);
 }
 
